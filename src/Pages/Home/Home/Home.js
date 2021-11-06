@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 import Navigation from '../../Shared/Navigation/Navigation';
 import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
@@ -12,6 +13,10 @@ import Testimonial from '../Testimonial/Testimonial';
 const Home = () => {
     return (
         <div>
+            <Helmet>
+                <title>Home || Doctor Portal</title>
+
+            </Helmet>
             <Navigation></Navigation>
             <Banner></Banner>
             <Services></Services>
