@@ -10,6 +10,7 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 const Navigation = () => {
     const { user, logout } = useAuth();
+    console.log(user)
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -27,13 +28,26 @@ const Navigation = () => {
                         Doctors Portal
                     </Typography>
                     <Link to="/appointment"><Button color="inherit">Appointment</Button></Link>
+                    {/* {
+                        user?.email ?
+                            <Box>
+                                <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
+                                    <Button color="inherit">Dashboard</Button>
+                                </NavLink>
+                                <Button onClick={logout} color="inherit"> <span style={{ marginRight: "5px" }}>{user?.displayName}</span>  Logout</Button>
+                            </Box>
+                            :
+                            <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
+                                <Button color="inherit">Login</Button>
+                            </NavLink>
+                    } */}
                     {
                         user?.email ?
                             <Box>
                                 <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
                                     <Button color="inherit">Dashboard</Button>
                                 </NavLink>
-                                <Button onClick={logout} color="inherit">Logout</Button>
+                                <Button onClick={logout} color="inherit"><span style={{ marginRight: "5px" }}>{user?.displayName}</span>  Logout</Button>
                             </Box>
                             :
                             <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/login">
