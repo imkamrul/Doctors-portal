@@ -23,12 +23,13 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddDoctor from '../AddDoctor/AddDoctor';
 import useAuth from '../../../hooks/useAuth'
 import AdminRoute from '../../AdminRoute/AdminRoute';
+import Pay from '../Pay/Pay';
 
 const drawerWidth = 200;
 
 function Dashboard(props) {
     const { admin } = useAuth();
-    console.log(admin)
+
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     let { path, url } = useRouteMatch();
@@ -131,6 +132,9 @@ function Dashboard(props) {
                     <Switch>
                         <Route exact path={path}>
                             <DashboardHome></DashboardHome>
+                        </Route>
+                        <Route path={`${path}/payment/:appointmentId`}>
+                          <Pay/>
                         </Route>
                         <AdminRoute path={`${path}/makeAdmin`}>
                             <MakeAdmin></MakeAdmin>

@@ -4,7 +4,7 @@ import useAuth from '../../../hooks/useAuth'
 const MakeAdmin = () => {
     const [email, setEmail] = useState(" ");
     const [success, setSuccess] = useState(false);
-    console.log(success)
+
     const { token } = useAuth();
     const handleOnblur = e => {
         setEmail(e.target.value)
@@ -26,7 +26,7 @@ const MakeAdmin = () => {
             .then(data => {
 
                 if (data.modifiedCount) {
-                    console.log(data)
+
                     setEmail(" ");
                     setSuccess(true)
 

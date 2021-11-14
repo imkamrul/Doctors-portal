@@ -36,7 +36,7 @@ const useFirebase = () => {
             })
             .catch((error) => {
                 setAuthError(error.message);
-                console.log(error);
+
             })
             .finally(() => setIsLoading(false));
     }
@@ -87,7 +87,7 @@ const useFirebase = () => {
                 setUser(user);
                 getIdToken(user)
                     .then(idToken => {
-                        console.log(idToken)
+
                         setToken(idToken)
                     })
             } else {

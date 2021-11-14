@@ -7,22 +7,25 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Link } from 'react-router-dom';
+import { Button } from '@mui/material';
 const Appointments = ({ date }) => {
     const { user } = useAuth();
-    // console.log(date)
+
     const [appointments, setAppointments] = useState([])
 
     useEffect(() => {
         const newDate = date.toLocaleDateString()
         const url = `https://shrouded-taiga-34709.herokuapp.com/appointments?email=${user.email}&date=${newDate}`
-        // console.log(url)
+
         fetch(url)
             .then(res => res.json())
             .then(data => {
                 setAppointments(data)
-                // console.log(data)
+                console.log(data)
+
             });
-    }, [date])
+    }, [date,user])
 
     return (
         <div>
@@ -48,7 +51,10 @@ const Appointments = ({ date }) => {
                                 </TableCell>
                                 <TableCell align="right">{row.time}</TableCell>
                                 <TableCell align="right">{row.serviceName}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
+                                <TableCell align="right">{row.payment ?
+                                    'Paid' :
+                                    <Link to={`/dashboard/payment/${row._id}`}><button>Pay</button></Link>
+                                }</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

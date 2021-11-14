@@ -5,6 +5,7 @@ import AppointmentBanner from '../AppointmentBanner/AppointmentBanner';
 import Banner from '../Banner/Banner';
 import Blogs from '../Blogs/Blogs';
 import Concept from '../Concept/Concept';
+import ContactUs from '../ContactUs/ContactUs';
 import OurDoctors from '../OurDoctors/OurDoctors';
 import Services from '../Services/Services';
 import Testimonial from '../Testimonial/Testimonial';
@@ -25,6 +26,7 @@ const Home = () => {
             <Testimonial></Testimonial>
             <Blogs></Blogs>
             <OurDoctors></OurDoctors>
+            <ContactUs></ContactUs>
         </div>
     );
 };

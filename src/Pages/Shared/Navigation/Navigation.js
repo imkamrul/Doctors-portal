@@ -10,7 +10,7 @@ import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 const Navigation = () => {
     const { user, logout } = useAuth();
-    console.log(user)
+
     return (
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
