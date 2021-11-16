@@ -1,53 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-import doctorIMG from '../../../images/doctor-small.png'
 import Grid from '@mui/material/Grid';
-import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
-import { Typography } from '@mui/material';
+
+import { Container, Typography } from '@mui/material';
+import Doctor from './Doctor';
 const OurDoctors = () => {
+    const [doctors, setDoctors] = useState([]);
+
+    useEffect(() => {
+        fetch('https://shrouded-taiga-34709.herokuapp.com/doctors')
+            .then(res => res.json())
+            .then(data => setDoctors(data))
+    }, [])
     return (
         <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3, mt: 5 }} style={{ color: '#5CE7ED' }}> Our Doctors</Typography>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={4} >
-                    <img src={doctorIMG} alt="" style={{ width: "90%", height: "290px" }} />
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 2, mb: 0 }} gutterBottom component="div">
-                        Dr. Caudi
-                    </Typography>
-                    <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 0 }}>
-                        <Box>
-                            < PhoneAndroidIcon sx={{ fontSize: 30 }} style={{ color: '#5CE7ED' }} />
-                        </Box>
-                        <Box sx={{ mt: 0.5 }}>   +8801715684555</Box>
-                    </Typography>
+            <Typography variant="h4" sx={{ fontWeight: 'bold', mb: 3, mt: 5 }} style={{ color: '#5CE7ED' }}> Our Doctors  {doctors.length}</Typography>
+            <Container>
+                <Grid container spacing={2}>
+                    {
+                        doctors.map(doctor => <Doctor
+                            key={doctor._id}
+                            doctor={doctor}
+                        ></Doctor>)
+                    }
                 </Grid>
-                <Grid item xs={12} md={4} >
-                    <img src={doctorIMG} alt="" style={{ width: "90%", height: "290px" }} />
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 2, mb: 0 }} gutterBottom component="div">
-                        Dr. Caudi
-                    </Typography>
-                    <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 0 }}>
-                        <Box>
-                            < PhoneAndroidIcon sx={{ fontSize: 30 }} style={{ color: '#5CE7ED' }} />
-                        </Box>
-                        <Box sx={{ mt: 0.5 }}>   +8801715684555</Box>
-                    </Typography>
-                </Grid>
-                <Grid item xs={12} md={4} >
-                    <img src={doctorIMG} alt="" style={{ width: "90%", height: "290px" }} />
-                    <Typography variant="h6" sx={{ fontWeight: 'bold', mt: 2, mb: 0 }} gutterBottom component="div">
-                        Dr. Caudi
-                    </Typography>
-                    <Typography sx={{ display: 'flex', justifyContent: 'center', mt: 0 }}>
-                        <Box>
-                            < PhoneAndroidIcon sx={{ fontSize: 30 }} style={{ color: '#5CE7ED' }} />
-                        </Box>
-                        <Box sx={{ mt: 0.5 }}>   +8801715684555</Box>
-                    </Typography>
-                </Grid>
+            </Container>
 
-
-            </Grid>
         </Box >
     );
 };
